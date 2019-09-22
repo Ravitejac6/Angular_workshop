@@ -10,39 +10,13 @@ import { take } from 'rxjs/operators';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  
-  toppings: Topping[];
-  images: Observable<FlickrPhoto[]>;
-  selected: Array<Topping> = [];
-  place: string;
-  ingredient: Topping;
+export class AppComponent {
 
-  constructor(private dataService:DataService) {
+
+  constructor() {
 
   }
 
-  add() {
-    //TODO: remove ingredient from toppings list
-    this.toppings.splice(this.toppings.indexOf(this.ingredient), 1);
-    if(this.ingredient) this.selected.push(this.ingredient);
-  }
 
-  remove(t:Topping) {
-    this.toppings.push(t);
-    this.selected.splice(this.selected.indexOf(t), 1);
-  }
-  
-  ngOnInit(): void {
-    this.dataService.get_toppings().pipe(take(1)).subscribe( d => {
-      this.toppings = d;
-    })
-    //this.toppings = this.dataService.get_toppings();
-   
-  }
-
-  updateImages() {
-    this.images = this.dataService.get_flickr_photolist(this.place);
-  }
 
 }
