@@ -27,7 +27,7 @@
       <input type="text" formControlName="password" required>
     </label>
 
-    <button type="submit" (click)="onSubmit()"
+    <button type="submit" (click)="create_user()"
             [disabled]="profileForm.pristine || profileForm.status!='VALID'" class="btn btn-success">Submit</button>
   </div>
   <p>

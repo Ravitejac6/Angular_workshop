@@ -4,6 +4,7 @@ import { catchError, mapTo, tap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
 import { Tokens } from '../models/tokens';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,11 @@ export class AuthService {
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   private readonly USER_ID = 'USER_ID';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router:Router) { }
 
   create_user(data: any): Observable<boolean> {
     console.log("creating ...");
-    return this.http.post<boolean>(`${environment.serverurl}/pizza/signup/`,
+    return this.http.post<any>(`${environment.serverurl}/pizzaa/signup/`,
       data).pipe(
         map(r => {
           console.log(r);
@@ -32,7 +33,8 @@ export class AuthService {
       data).pipe(
         map(r => {
           this.storeTokens({access: r['access'], refresh:r['refresh']});
-          return true;
+           this.router.navigate(['/pizza']);
+           return true;
         })
       );
   }

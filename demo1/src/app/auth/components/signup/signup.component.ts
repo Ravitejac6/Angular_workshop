@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
+  create_user() {
     this.authService.create_user(this.profileForm.value).pipe(take(1)).subscribe(d=>{
       console.log(d);
     })
